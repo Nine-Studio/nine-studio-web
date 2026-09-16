@@ -1,0 +1,131 @@
+<nav class="nav">
+  <div class="container nav__content">
+    <a class="brand" href="#inicio">NINE STUDIO.</a>
+    <div class="nav__links">
+      <a href="#esencia">Esencia</a><a href="#servicios">Servicios</a
+      ><a href="#proyectos">Proyectos</a>
+    </div>
+    <a class="button button--small" href="#contacto">CONTACTO</a>
+  </div>
+</nav>
+<main id="inicio">
+  <header class="hero container">
+    <p class="eyebrow fade-in delay-1">LÁZARO CÁRDENAS, MICH.</p>
+    <h1 class="fade-in delay-2">Diseño web que<br /><span>Vende solo</span></h1>
+    <p class="hero__copy fade-in delay-3">
+      Transformamos negocios tradicionales en potencias digitales. Diseño limpio
+      y estrategias reales.
+    </p>
+    <a class="button fade-in delay-4" href="#contacto">INICIAR PROYECTO</a>
+  </header>
+  <section id="esencia" class="section section--white">
+    <div class="container essence">
+      <p class="eyebrow">01. Nuestra Esencia</p>
+      <h2>
+        En Nine Studio, creemos que
+        <strong>el diseño debe ser rentable.</strong>
+      </h2>
+      <p>
+        No solo hacemos que tu marca se vea bien; creamos estrategias digitales
+        para que tu negocio destaque, atraiga clientes y supere a la competencia
+        local.
+      </p>
+    </div>
+  </section>
+  <section id="servicios" class="section">
+    <div class="container service-groups">
+      @for (group of services; track group.title) {
+        <article class="service-group">
+          <div class="section-heading">
+            <p [class]="'eyebrow eyebrow--' + group.color">
+              {{ group.eyebrow }}
+            </p>
+            <h2>{{ group.title }}</h2>
+            <p>{{ group.description }}</p>
+          </div>
+          <div class="service-grid">
+            @for (card of group.cards; track card.title) {
+              <div class="service-card">
+                <span
+                  [class]="
+                    'service-card__icon service-card__icon--' + group.color
+                  "
+                  >{{ card.icon }}</span
+                >
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.description }}</p>
+              </div>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+  <section id="proyectos" class="section section--white">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow eyebrow--blue">Ecosistema digital</p>
+        <h2>Adaptabilidad Total</h2>
+        <p>Tus proyectos se ven perfectos en cualquier pantalla.</p>
+      </div>
+      <article class="project">
+        <div class="project__visual">
+          <img src="1mac.webp" alt="Taller Multi-Dispositivo" />
+        </div>
+        <div class="project__body">
+          <span class="tag">Gestión Total</span>
+          <h3>CristaFácil 360°</h3>
+          <p>
+            Control absoluto. Visualiza tu plataforma de gestión con la máxima
+            claridad.
+          </p>
+          <a
+            href="https://cristafacil-lzc.com.mx"
+            target="_blank"
+            rel="noopener"
+            >Ver detalles →</a
+          >
+        </div>
+      </article>
+    </div>
+  </section>
+  <section id="contacto" class="section section--white contact">
+    <div class="container contact__content">
+      <h2>Hablemos de Negocios</h2>
+      <p>¿Tienes una idea? Nosotros tenemos la ingeniería.</p>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form__row">
+          <input
+            formControlName="nombre"
+            placeholder="Nombre"
+            aria-label="Nombre"
+          /><input
+            formControlName="email"
+            type="email"
+            placeholder="Correo"
+            aria-label="Correo"
+          />
+        </div>
+        <textarea
+          formControlName="mensaje"
+          rows="4"
+          placeholder="Cuéntanos tu proyecto..."
+          aria-label="Mensaje"
+        ></textarea
+        ><button class="button" type="submit" [disabled]="isSending">
+          {{ isSending ? "ENVIANDO..." : "ENVIAR SOLICITUD" }}
+        </button>
+        @if (submitted) {
+          <p class="form__success">Gracias. Te contactaremos pronto.</p>
+        }
+        @if (errorMessage) {
+          <p class="form__error">{{ errorMessage }}</p>
+        }
+      </form>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="brand">NINE STUDIO.</div>
+  <p>© 2026 Lázaro Cárdenas, Michoacán.</p>
+</footer>
